@@ -15,4 +15,5 @@ class ControlerReactController extends AbstractController
             'controller_name' => 'ControlerReactController',
         ]);
     }
+
 }

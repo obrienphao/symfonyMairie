@@ -1,6 +1,6 @@
 // App.js
 import React, { useState, useEffect } from 'react';
-
+import axios from 'axios';
 
 const Formulaire = () => {
   const [nom, setNom] = useState('');
@@ -9,25 +9,38 @@ const Formulaire = () => {
   const [telephone, setTelephone] = useState('');
   const [adresse, setAdresse] = useState('');
   const [genre, setGenre] = useState('');
-
+ 
   useEffect(() => {
-    // Fonction de nettoyage à appeler lors de la destruction du composant
-    return () => {
-      setNom('');
-      setPrenom('');
-      setEmail('');
-      setTelephone('');
-      setAdresse('');
-      setGenre('');
-    };
+     // Fonction de nettoyage à appeler lors de la destruction du composant
+     return () => {
+       setNom('');
+       setPrenom('');
+       setEmail('');
+       setTelephone('');
+       setAdresse('');
+       setGenre('');
+     };
   }, []); // L'effet de nettoyage sera déclenché lors de la destruction du composant
-
-
+ 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
+     e.preventDefault();
+     try {
+       await axios.post('/add/habitant', {
+         nom,
+         prenom,
+         email,
+         telephone,
+         adresse,
+         genre,
+       });
+   
+       alert('Le formulaire a été envoyé avec succès.');
+    } catch (error) {
+       alert('Erreur lors de l\'envoi du formulaire.');
+    }
+ 
   };
-
+ 
   return (
     <div className="App">
       <h1>Formulaire</h1>
