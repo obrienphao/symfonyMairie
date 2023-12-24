@@ -13,7 +13,7 @@ import './styles/app.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import Composant from './composant';
+import App from './composant.js';
 
 registerReactControllerComponents(require.context('./react/controllers', true, /\.(j|t)sx?$/));
 
@@ -25,6 +25,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <React.StrictMode>
-        <Composant/>
+        <App/>
     </React.StrictMode>
 )

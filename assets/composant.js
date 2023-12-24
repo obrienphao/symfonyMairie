@@ -1,10 +1,11 @@
 import React from 'react';
+import Formulaire from './sources/formulaire';
 
-function Composant(){
+function App(){
     return (
-        <p> test</p>
+        <div><Formulaire/></div>
     );
 }
 
 
-export default Composant;
+export default App;
