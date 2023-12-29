@@ -9,3 +9,20 @@ add_habitant:
     path: /add/habitant
     methods: [POST]
     controller: App\Controller\AddHabitantController::addHabitant
+
+
+show_habitant:
+    path: /show/habitant
+    controller: App\Controller\ShowHabitantController::getHabitantData
+    methods: ['GET']
+
+app_delete_habitant:
+    path: /delete/habitant/{id}
+    controller: App\Controller\DeleteHabitantController::deleteHabitant
+    methods: ['DELETE']
+
+
+app_get_habitant:
+    path: /get/habitant/{id}
+    controller: App\Controller\DeleteHabitantController::getHabitantById
+    methods: ['GET']

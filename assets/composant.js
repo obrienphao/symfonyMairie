@@ -1,9 +1,14 @@
 import React from 'react';
 import Formulaire from './sources/formulaire';
+import ShowHabitant from './sources/showHabitant'
 
-function App(){
+//<div><Formulaire /></div>
+function App() {
     return (
-        <div><Formulaire/></div>
+        <div>
+            <div><Formulaire/></div>
+            <div><ShowHabitant/></div>
+        </div>
     );
 }
 

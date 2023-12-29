@@ -35,6 +35,7 @@ const Formulaire = () => {
        });
    
        alert('Le formulaire a été envoyé avec succès.');
+       window.location.reload();
     } catch (error) {
        alert('Erreur lors de l\'envoi du formulaire.');
     }
