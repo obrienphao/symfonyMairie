@@ -3,9 +3,46 @@ import axios from 'axios';
 
 const ShowHabitant = () => {
  const [habitants, setHabitants] = useState([]);
+ const [habitant, setHabitant] = useState({});
+ const [showEdit, setShowEdit] = useState(false);
+ const [habitantToEdit, setHabitantToEdit] = useState(null);
+ const [habitantInput, setHabitantInput] = useState({
+    id: '',
+    nom: '',
+    prenom: '',
+    adresse: '',
+    email: '',
+    telephone: '',
+    genre: '',
+ });
+
+ const handleInputChange = (e) => {
+  setHabitantInput({ ...habitantInput, [e.target.name]: e.target.value });
+ };
+
+ const saveHabitant = async (id) => {
+    try {
+      const response = await axios.put(`/update/habitant/${id}`, {
+        id: habitantInput.id,
+        nom: habitantInput.nom,
+        prenom: habitantInput.prenom,
+        adresse: habitantInput.adresse,
+        email: habitantInput.email,
+        telephone: habitantInput.telephone,
+        genre: habitantInput.genre,
+      });
+
+      if (response.data) {
+        setHabitants(habitants.map((habitant) => habitant.id === id ? response.data : habitant));
+        setShowEdit(false);
+      }
+    } catch (error) {
+      console
+    }
+ }
 
  const deleteHabitant = async (id) => {
-   try {
+    try {
       const response = await fetch(`/delete/habitant/${id}`, {
         method: 'DELETE',
       });
@@ -14,39 +51,45 @@ const ShowHabitant = () => {
         setHabitants(habitants.filter((habitant) => habitant.id !== id));
         window.location.reload();
       }
-   } catch (error) {
+    } catch (error) {
       console.error('Error:', error);
-   }
+    }
  };
 
+useEffect(() => {
+    if (habitantToEdit) {
+      setHabitantInput(habitantToEdit);
+    }
+ }, [habitantToEdit]); 
  const editHabitant = async (id) => {
 
     try {
-        const response = await axios.get(`/get/habitant/${id}`);
-    
-        if (response.data) {
-          setHabitant({
-            id: response.data.id,
-            nom: response.data.nom,
-            prenom: response.data.prenom,
-            adresse: response.data.adresse,
-            email: response.data.email,
-            telephone: response.data.telephone,
-            genre: response.data.genre,
-          });
-    
-          setShowEdit(true);
-        }
-     } catch (error) {
-        console.error('Error:', error);
-     }
- 
+      const response = await axios.get(`/get/habitant/${id}`);
+
+      if (response.data) {
+        setHabitant({
+          id: response.data.id,
+          nom: response.data.nom,
+          prenom: response.data.prenom,
+          adresse: response.data.adresse,
+          email: response.data.email,
+          telephone: response.data.telephone,
+          genre: response.data.genre,
+        });
+        setHabitantInput(response.data);
+        setShowEdit(true);
+        //window.location.reload();
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+
  };
 
  useEffect(() => {
     fetch('/show/habitant')
-    .then((response) => response.json())
-    .then((data) => setHabitants(data));
+      .then((response) => response.json())
+      .then((data) => setHabitants(data));
  }, []);
 
  return (
@@ -79,6 +122,62 @@ const ShowHabitant = () => {
             </td>
           </tr>
         ))}
+        {showEdit && (
+          <tr>
+            <td colSpan="2">
+              <input
+                type="text"
+                name="nom"
+                value={habitantInput.nom}
+                onChange={handleInputChange}
+              />
+            </td>
+            <td colSpan="2">
+              <input
+                type="text"
+                name="prenom"
+                value={habitantInput.prenom}
+                onChange={handleInputChange}
+              />
+            </td>
+            <td colSpan="2">
+              <input
+                type="text"
+                name="email"
+                value={habitantInput.email}
+                onChange={handleInputChange}
+              />
+            </td>
+            <td colSpan="2">
+              <input
+                type="text"
+                name="telephone"
+                value={habitantInput.telephone}
+                onChange={handleInputChange}
+              />
+            </td>
+            <td colSpan="2">
+              <input
+                type="text"
+                name="adresse"
+                value={habitantInput.adresse}
+                onChange={handleInputChange}
+              />
+            </td>
+            <td colSpan="2">
+              <input
+                type="text"
+                name="genre"
+                value={habitantInput.genre}
+                onChange={handleInputChange}
+              />
+            </td>
+            <td>
+              <button onClick={() => saveHabitant(habitant.id)}>Enregistrer</button>
+              <button onClick={() => setShowEdit(false)}>Annuler</button>
+            </td>
+          </tr>
+        )}
       </tbody>
     </table>
  );

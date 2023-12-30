@@ -24,5 +24,5 @@ app_delete_habitant:
 
 app_get_habitant:
     path: /get/habitant/{id}
-    controller: App\Controller\DeleteHabitantController::getHabitantById
+    controller: App\Controller\GetHabitantController::getHabitantById
     methods: ['GET']
