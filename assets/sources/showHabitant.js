@@ -35,6 +35,7 @@ const ShowHabitant = () => {
       if (response.data) {
         setHabitants(habitants.map((habitant) => habitant.id === id ? response.data : habitant));
         setShowEdit(false);
+        window.location.reload();
       }
     } catch (error) {
       console
