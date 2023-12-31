@@ -1,3 +1,127 @@
+
 body {
-    background-color: lightgray;
+    font-family: Arial, sans-serif;
+   }
+   
+   .App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+   }
+   
+   h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+   }
+   
+   form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+   }
+   
+   label {
+    margin-bottom: 10px;
+   }
+   
+   input[type="text"],
+   input[type="email"],
+   input[type="tel"],
+   select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+   }
+   
+   button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+   }
+   
+   button[type="submit"]:hover {
+    background-color: #45a049;
+   }
+   
+   .table {
+    width: 100%;
+    border-collapse: collapse;
+   }
+   
+   .th {
+    background-color: #4CAF50;
+    color: white;
+   }
+   
+   .tr:nth-child(even) {
+    background-color: #f2f2f2;
+   }
+   
+   .td {
+    border: 1px solid #ddd;
+    padding: 8px;
+   }
+   
+   .input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+   }
+   
+   .button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+   }
+
+   /* Styles pour la table */
+.myTable {
+    border-collapse: collapse;
+    width: 100%;
+   }
+   
+   .myTable th, .myTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+   }
+   
+   .myTable th {
+    background-color: #5B7C86;
+    color: white;
+   }
+   
+   .myTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+   }
+   
+   .myTable tr:hover {
+    background-color: #ddd;
+   }
+
+   /* Effet de bond en arrière */
+.myTable:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s;
+}
+
+/* Style pour le fond */
+.container {
+    background-color: #5B7C86;
+    padding: 20px;
 }

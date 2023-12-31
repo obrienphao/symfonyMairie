@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+import '../bootstrap.js';
+import '../styles/app.css';
+
 const ShowHabitant = () => {
  const [habitants, setHabitants] = useState([]);
  const [habitant, setHabitant] = useState({});
  const [showEdit, setShowEdit] = useState(false);
  const [habitantToEdit, setHabitantToEdit] = useState(null);
+ const [search, setSearch] = useState('');
  const [habitantInput, setHabitantInput] = useState({
     id: '',
     nom: '',
@@ -17,7 +21,7 @@ const ShowHabitant = () => {
  });
 
  const handleInputChange = (e) => {
-  setHabitantInput({ ...habitantInput, [e.target.name]: e.target.value });
+    setHabitantInput({ ...habitantInput, [e.target.name]: e.target.value });
  };
 
  const saveHabitant = async (id) => {
@@ -38,9 +42,9 @@ const ShowHabitant = () => {
         window.location.reload();
       }
     } catch (error) {
-      console
+      console.error('Error:', error);
     }
- }
+ };
 
  const deleteHabitant = async (id) => {
     try {
@@ -57,13 +61,13 @@ const ShowHabitant = () => {
     }
  };
 
-useEffect(() => {
+ useEffect(() => {
     if (habitantToEdit) {
       setHabitantInput(habitantToEdit);
     }
- }, [habitantToEdit]); 
- const editHabitant = async (id) => {
+ }, [habitantToEdit]);
 
+ const editHabitant = async (id) => {
     try {
       const response = await axios.get(`/get/habitant/${id}`);
 
@@ -84,7 +88,6 @@ useEffect(() => {
     } catch (error) {
       console.error('Error:', error);
     }
-
  };
 
  useEffect(() => {
@@ -93,94 +96,108 @@ useEffect(() => {
       .then((data) => setHabitants(data));
  }, []);
 
+ const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+ };
+
+ const filteredHabitants = habitants.filter((habitant) =>
+    habitant.nom.toLowerCase().includes(search.toLowerCase()) ||
+    habitant.prenom.toLowerCase().includes(search.toLowerCase())
+ );
+
  return (
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nom</th>
-          <th>Prénom</th>
-          <th>Adresse</th>
-          <th>Téléphone</th>
-          <th>Email</th>
-          <th>Genre</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {habitants.map((habitant) => (
-          <tr key={habitant.id}>
-            <td>{habitant.id}</td>
-            <td>{habitant.nom}</td>
-            <td>{habitant.prenom}</td>
-            <td>{habitant.adresse}</td>
-            <td>{habitant.telephone}</td>
-            <td>{habitant.email}</td>
-            <td>{habitant.genre}</td>
-            <td>
-              <button onClick={() => deleteHabitant(habitant.id)}>Supprimer</button>
-              <button onClick={() => editHabitant(habitant.id)}>Modifier</button>
-            </td>
-          </tr>
-        ))}
-        {showEdit && (
+    <div>
+      <h2>Liste des habitants</h2>
+      <input type="text" placeholder="Rechercher" value={search} onChange={handleSearchChange} />
+
+      <table className="myTable">
+        <thead>
           <tr>
-            <td colSpan="2">
-              <input
-                type="text"
-                name="nom"
-                value={habitantInput.nom}
-                onChange={handleInputChange}
-              />
-            </td>
-            <td colSpan="2">
-              <input
-                type="text"
-                name="prenom"
-                value={habitantInput.prenom}
-                onChange={handleInputChange}
-              />
-            </td>
-            <td colSpan="2">
-              <input
-                type="text"
-                name="email"
-                value={habitantInput.email}
-                onChange={handleInputChange}
-              />
-            </td>
-            <td colSpan="2">
-              <input
-                type="text"
-                name="telephone"
-                value={habitantInput.telephone}
-                onChange={handleInputChange}
-              />
-            </td>
-            <td colSpan="2">
-              <input
-                type="text"
-                name="adresse"
-                value={habitantInput.adresse}
-                onChange={handleInputChange}
-              />
-            </td>
-            <td colSpan="2">
-              <input
-                type="text"
-                name="genre"
-                value={habitantInput.genre}
-                onChange={handleInputChange}
-              />
-            </td>
-            <td>
-              <button onClick={() => saveHabitant(habitant.id)}>Enregistrer</button>
-              <button onClick={() => setShowEdit(false)}>Annuler</button>
-            </td>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Adresse</th>
+            <th>Téléphone</th>
+            <th>Email</th>
+            <th>Genre</th>
+            <th>Actions</th>
           </tr>
-        )}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {filteredHabitants.map((habitant) => (
+            <tr key={habitant.id}>
+              <td>{habitant.id}</td>
+              <td>{habitant.nom}</td>
+              <td>{habitant.prenom}</td>
+              <td>{habitant.adresse}</td>
+              <td>{habitant.telephone}</td>
+              <td>{habitant.email}</td>
+              <td>{habitant.genre}</td>
+              <td>
+                <button onClick={() => deleteHabitant(habitant.id)}>Supprimer</button>
+                <button onClick={() => editHabitant(habitant.id)}>Modifier</button>
+              </td>
+            </tr>
+          ))}
+          {showEdit && (
+            <tr>
+              <td colSpan="2">
+                <input
+                 type="text"
+                 name="nom"
+                 value={habitantInput.nom}
+                 onChange={handleInputChange}
+                />
+              </td>
+              <td colSpan="2">
+                <input
+                 type="text"
+                 name="prenom"
+                 value={habitantInput.prenom}
+                 onChange={handleInputChange}
+                />
+              </td>
+              <td colSpan="2">
+                <input
+                 type="text"
+                 name="email"
+                 value={habitantInput.email}
+                 onChange={handleInputChange}
+                />
+              </td>
+              <td colSpan="2">
+                <input
+                 type="text"
+                 name="telephone"
+                 value={habitantInput.telephone}
+                 onChange={handleInputChange}
+                />
+              </td>
+              <td colSpan="2">
+                <input
+                 type="text"
+                 name="adresse"
+                 value={habitantInput.adresse}
+                 onChange={handleInputChange}
+                />
+              </td>
+              <td colSpan="2">
+                <input
+                 type="text"
+                 name="genre"
+                 value={habitantInput.genre}
+                 onChange={handleInputChange}
+                />
+              </td>
+              <td>
+                <button onClick={() => saveHabitant(habitant.id)}>Enregistrer</button>
+                <button onClick={() => setShowEdit(false)}>Annuler</button>
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
  );
 };
 
