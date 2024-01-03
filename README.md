@@ -1,7 +1,8 @@
 # symfonyMairie
 recensement Mairie 
 
-Nous avons créé une base de données `Habitant` que nous avions configuré dans notre fichier `env` 
+Nous avons créé une base de données `Habitant` que nous avions configuré dans notre fichier `env` ce qui ressemble à :
+`DATABASE_URL=mysql://root:Mypasswor...@127.0.0.1:3306/Habitant?serverVersion=8.0`
 Donc pour un bon fonctionnement:
 - rassurez-vous d'avoir une base de données avec une table `Recensement`
 - Pour acceder à la page d'aceuille il faut déjà lancer le serveur symfony
@@ -16,3 +17,4 @@ Donc pour un bon fonctionnement:
   - Un champ pour chercher un habitant
   - Un bouton pour supprimer un habitant
   - Un bouton pour modifié les information de l'habitant 
+
