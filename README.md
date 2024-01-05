@@ -19,7 +19,7 @@ Donc pour un bon fonctionnement:
   - Un bouton pour modifié les information de l'habitant
 
 #Erreur :
-- si vous rencontrez une erreur pendant l'exécution de la commande `npm run dev` qui dit `sh: 1: encore: not found`  suivrez cette demarche :
+- si vous rencontrez une erreur pendant l'exécution de la commande `npm run dev` qui dit `sh: 1: encore: not found` veuillez suivre cette demarche :
 - Dans la racine du projet vous faîtes
     1.  `composer require symfony/webpack-encore-bundle`
     2. `export PATH="./node_modules/.bin:$PATH"`
