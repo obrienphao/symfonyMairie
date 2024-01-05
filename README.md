@@ -16,5 +16,12 @@ Donc pour un bon fonctionnement:
   - Un tableau qui liste les habitants
   - Un champ pour chercher un habitant
   - Un bouton pour supprimer un habitant
-  - Un bouton pour modifié les information de l'habitant 
+  - Un bouton pour modifié les information de l'habitant
+
+#Erreur :
+- si vous rencontrez une erreur pendant l'exécution de la commande `npm run dev` qui dit `sh: 1: encore: not found`  suivrez cette demarche :
+- Dans la racine du projet vous faîtes
+    1.  `composer require symfony/webpack-encore-bundle`
+    2. `export PATH="./node_modules/.bin:$PATH"`
+    3. `npm install --save-dev @symfony/webpack-encore`
 
