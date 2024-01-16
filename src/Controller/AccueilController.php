@@ -8,14 +8,15 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse as JsonResponse;
 
 
-class ControlerReactController extends AbstractController
+class AccueilController extends AbstractController
 {
-    #[Route('/controler/react', name: 'app_controler_react')]
-    public function index(): Response
+    #[Route('/accueil', name: 'app_accueil')]
+    public function accueil(): Response
     {
-        return $this->render('controler_react/index.html.twig', [
-            'controller_name' => 'ControlerReactController',
+        return $this->render('accueil_react/index.html.twig', [
+            'controller_name' => 'AccueilController',
         ]);
     }
 
+   
 }
