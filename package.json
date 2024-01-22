@@ -19,6 +19,7 @@
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
+        "cypress": "cypress open",
         "build": "encore production --progress"
     },
     "dependencies": {

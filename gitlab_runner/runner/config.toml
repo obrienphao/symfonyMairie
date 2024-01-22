@@ -1,0 +1,28 @@
+concurrent = 1
+check_interval = 0
+
+[session_server]
+  session_timeout = 1800
+
+[[runners]]
+  name = "runner_docker"
+  url = "https://scm.univ-tours.fr/"
+  id = 19
+  token = "ZaqvBBE_HPcnQCjBDhBa"
+  token_obtained_at = 2022-11-28T17:14:34Z
+  token_expires_at = 0001-01-01T00:00:00Z
+  executor = "docker"
+  [runners.custom_build_dir]
+  [runners.cache]
+    [runners.cache.s3]
+    [runners.cache.gcs]
+    [runners.cache.azure]
+  [runners.docker]
+    tls_verify = false
+    image = "docker:latest"
+    privileged = true
+    disable_entrypoint_overwrite = false
+    oom_kill_disable = false
+    disable_cache = false
+    volumes = ["/var/run/docker.sock:/var/run/docker.sock", "/cache"]
+    shm_size = 0

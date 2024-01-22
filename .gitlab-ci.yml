@@ -1,0 +1,11 @@
+image: node:latest
+
+stages:
+  - test
+
+cypress_test:
+  stage: test
+  script:
+    - npm install
+    - npm run cypress
+
