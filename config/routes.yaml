@@ -7,7 +7,7 @@ controllers:
 
 accueil_redirection:
     path: /redirection
-    controller: App\Controller\AccueilController::redirection
+    controller: App\Controller\RedirectionController::redirection
 
 authentification:
     path: /authentification
