@@ -8,40 +8,42 @@ const Formulaire = () => {
   const [email, setEmail] = useState('');
   const [telephone, setTelephone] = useState('');
   const [adresse, setAdresse] = useState('');
-  const [genre, setGenre] = useState('');
- 
+  //const [genre, setGenre] = useState('');
+
+  const [genre, setGenre] = useState("homme");
+
   useEffect(() => {
-     // Fonction de nettoyage à appeler lors de la destruction du composant
-     return () => {
-       setNom('');
-       setPrenom('');
-       setEmail('');
-       setTelephone('');
-       setAdresse('');
-       setGenre('');
-     };
+    // Fonction de nettoyage à appeler lors de la destruction du composant
+    return () => {
+      setNom('');
+      setPrenom('');
+      setEmail('');
+      setTelephone('');
+      setAdresse('');
+      setGenre('');
+    };
   }, []); // L'effet de nettoyage sera déclenché lors de la destruction du composant
- 
+
   const handleSubmit = async (e) => {
-     e.preventDefault();
-     try {
-       await axios.post('/add/habitant', {
-         nom,
-         prenom,
-         email,
-         telephone,
-         adresse,
-         genre,
-       });
-   
-       alert('Le formulaire a été envoyé avec succès.');
-       window.location.reload();
+    e.preventDefault();
+    try {
+      await axios.post('/add/habitant', {
+        nom,
+        prenom,
+        email,
+        telephone,
+        adresse,
+        genre,
+      });
+
+      alert('Le formulaire a été envoyé avec succès.');
+      window.location.reload();
     } catch (error) {
-       alert('Erreur lors de l\'envoi du formulaire.');
+      alert('Erreur lors de l\'envoi du formulaire.');
     }
- 
+
   };
- 
+
   return (
     <div className=" App form-container">
       <h1>Formulaire</h1>
