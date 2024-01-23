@@ -1,4 +1,3 @@
-// App.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ShowHabitant from './showHabitant';
@@ -11,18 +10,25 @@ const Authentification = () => {
   const [formulaire, setFormulaire] = useState(false);
   const [status, setStatus] = useState('');
 
-
   useEffect(() => {
-    // Fonction de nettoyage à appeler lors de la destruction du composant
+    const isAuthenticated = localStorage.getItem('authenticated');
+
+    if (isAuthenticated === 'true') {
+      setShowHabitant(true);
+      setFormulaire(true);
+      setStatus('ok');
+    }
+
     return () => {
       setNom('');
       setPassword('');
       setStatus('');
     };
-  }, []); // L'effet de nettoyage sera déclenché lors de la destruction du composant
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const response = await axios.post('/authentification', {
         nom,
@@ -34,14 +40,16 @@ const Authentification = () => {
         setShowHabitant(true);
         setFormulaire(true);
         setStatus('ok');
-        
+
+        // Store the authentication state in local storage
+        localStorage.setItem('authenticated', 'true');
+
         /*try{
           history.push('/redirection');
 
         }catch (error) {
           alert('redirection');
         }*/
-      
 
       } else {
         alert('Identifiant ou mot de passe incorrect.');
@@ -50,6 +58,13 @@ const Authentification = () => {
     } catch (error) {
       alert('Erreur lors de l\'envoi du formulaire.');
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('authenticated');
+    setShowHabitant(false);
+    setFormulaire(false);
+    setStatus('');
   };
 
   return (
@@ -72,6 +87,11 @@ const Authentification = () => {
       )}
       {formulaire && <Formulaire/>}
       {showHabitant && <ShowHabitant />}
+      {showHabitant && (
+        <button type="button" onClick={handleLogout}>
+          Déconnexion
+        </button>
+      )}
     </div>
   );
 };
