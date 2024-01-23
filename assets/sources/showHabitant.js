@@ -106,7 +106,7 @@ const ShowHabitant = () => {
  );
 
  return (
-    <div>
+    <div className="table-container" >
       <h2>Liste des habitants</h2>
       <input type="text" placeholder="Rechercher" value={search} onChange={handleSearchChange} />
 

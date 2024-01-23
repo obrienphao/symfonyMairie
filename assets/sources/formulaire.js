@@ -43,7 +43,7 @@ const Formulaire = () => {
   };
  
   return (
-    <div className="App">
+    <div className=" App form-container">
       <h1>Formulaire</h1>
       <form onSubmit={handleSubmit}>
         <label>
