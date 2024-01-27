@@ -82,6 +82,12 @@ class UpdateHabitantController extends AbstractController
             $habitant->setGenre($data['genre']);
         }
 
+        if (isset($data['dateNaissance'])) {
+            
+            $habitant->setDateDeNaissance($data['dateNaissance']);
+        }
+
+
         // Valider les données envoyées
         $errors = $this->validator->validate($habitant);
         if (count($errors) > 0) {

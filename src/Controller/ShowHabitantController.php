@@ -19,6 +19,8 @@ class ShowHabitantController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
+   
+
     /**
      * @Route("/show/habitant", name="show_habitant", methods={"GET"})
      */
@@ -29,6 +31,7 @@ class ShowHabitantController extends AbstractController
         $responseArray = [];
 
         foreach ($habitants as $habitant) {
+           
             $responseArray[] = [
                 'id' => $habitant->getId(),
                 'nom' => $habitant->getNom(),
@@ -37,6 +40,8 @@ class ShowHabitantController extends AbstractController
                 'telephone' => $habitant->getTelephone(),
                 'email' => $habitant->getEmail(),
                 'genre' => $habitant->getGenre(),
+                'dateNaissance' => $habitant->getDateDeNaissance(),
+                
             ];
         }
 

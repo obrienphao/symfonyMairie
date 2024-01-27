@@ -8,42 +8,53 @@ const Formulaire = () => {
   const [email, setEmail] = useState('');
   const [telephone, setTelephone] = useState('');
   const [adresse, setAdresse] = useState('');
-  const [genre, setGenre] = useState('');
- 
+  const [dateNaissance, setDateNaissance] = useState('');
+  const [genre, setGenre] = useState("homme");
+
   useEffect(() => {
-     // Fonction de nettoyage à appeler lors de la destruction du composant
-     return () => {
-       setNom('');
-       setPrenom('');
-       setEmail('');
-       setTelephone('');
-       setAdresse('');
-       setGenre('');
-     };
+    // Fonction de nettoyage à appeler lors de la destruction du composant
+    return () => {
+      setNom('');
+      setPrenom('');
+      setEmail('');
+      setTelephone('');
+      setAdresse('');
+      setGenre('');
+      setDateNaissance('');
+    };
   }, []); // L'effet de nettoyage sera déclenché lors de la destruction du composant
- 
+
   const handleSubmit = async (e) => {
-     e.preventDefault();
-     try {
-       await axios.post('/add/habitant', {
-         nom,
-         prenom,
-         email,
-         telephone,
-         adresse,
-         genre,
-       });
-   
-       alert('Le formulaire a été envoyé avec succès.');
-       window.location.reload();
+    e.preventDefault();
+    try {
+      const response = await axios.post('/add/habitant', {
+        nom,
+        prenom,
+        email,
+        telephone,
+        adresse,
+        genre,
+        dateNaissance
+      });
+
+      if (response.data.status === 'success') {
+        alert('Le formulaire a été envoyé avec succès.');
+        window.location.reload();
+      } else {
+        alert(response.data.message);
+      }
     } catch (error) {
-       alert('Erreur lors de l\'envoi du formulaire.');
+      //if (error.response && error.response.data && error.response.data.message) {
+      alert(error.response.data.message);
+      //} else {
+      // alert('Une erreur inattendue s\'est produite.');
+      //}
     }
- 
+
   };
- 
+
   return (
-    <div className="App">
+    <div className=" App form-container">
       <h1>Formulaire</h1>
       <form onSubmit={handleSubmit}>
         <label>
@@ -63,7 +74,12 @@ const Formulaire = () => {
         <br />
         <label>
           Téléphone:
-          <input type="tel" name="telephone" value={telephone} onChange={(e) => setTelephone(e.target.value)} />
+          <input type="number" name="telephone" value={telephone} onChange={(e) => setTelephone(e.target.value)} />
+        </label>
+        <br />
+        <label>
+          date de naissance:
+          <input type="date" name="dateNaissance" value={dateNaissance} onChange={(e) => setDateNaissance(e.target.value)} />
         </label>
         <br />
         <label>

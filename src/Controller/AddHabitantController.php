@@ -21,13 +21,93 @@ class AddHabitantController extends AbstractController
 
         // Validez les données et enregistrez le recensement
         $recensement = new Recensement();
+
+
+        //On test qu'aucun champ n'est vide
+
+        /*if(!($data['nom'] & $data['prenom'] & $data['telephone'] )){
+            return new JsonResponse([ 'status' => 'error',
+            'message' => "Tous les champs ne sont pas remplis",
+            ]);
+        }*/
+
+        if (!$data['nom']) {
+          return  new JsonResponse([
+                'status' => 'error',
+                'message' => 'Le nom est obligatoir ',
+            ]);
+        }
+
+        if (!$data['prenom']) {
+            return  new JsonResponse([
+                'status' => 'error',
+                'message' => 'Le prénom est obligatoire ',
+            ]);
+        }
+
+        if (!$data['adresse']) {
+            return  new JsonResponse([
+                
+                'status' => 'error',
+                'message' => 'L\'adresse est obligatoire ',
+            ]);
+        }
+
+
+        /*
+        *Test sur les charactères speciaux
+        */
+        if (!preg_match('/^[a-zA-ZÀ-ÿ0-9\s]+$/', $data['prenom'])) {
+            return  new JsonResponse([
+                'status' => 'error',
+                'message' => 'Le prénom ne doit contenir que des lettres, des chiffres et des espaces',
+            ]);
+        }
+
+        /*
+        *Test sur les charactères speciaux
+        */
+        if (!preg_match('/^[a-zA-ZÀ-ÿ0-9\s]+$/', $data['nom'])) {
+            return  new JsonResponse([
+                'status' => 'error',
+                'message' => 'Le prénom ne doit contenir que des lettres, des chiffres et des espaces',
+            ]);
+        }
+
+
+        if (strlen($data['telephone']) !== 10) {
+            return new JsonResponse([
+                'status' => 'error',
+                'message' => 'Le numéro de téléphone doit contenir exactement 10 chiffres',
+            ]);
+        }
+
+        if (!$data['dateNaissance']) {
+            return  new JsonResponse([
+                'status' => 'error',
+                'message' => 'Le champ date de naisssance est vide ',
+            ]);
+        }
+
+        /*
+        *Test sur les charactères speciaux
+        */
+
+        if (!preg_match('/^[a-zA-ZÀ-ÿ0-9\s]+$/', $data['adresse'])) {
+            return  new JsonResponse([
+                'status' => 'error',
+                'message' => 'Le prénom ne doit contenir que des lettres, des chiffres et des espaces',
+            ]);
+        }
+
         $recensement->setNom($data['nom']);
         $recensement->setPrenom($data['prenom']);
         $recensement->setEmail($data['email']);
         $recensement->setTelephone($data['telephone']);
         $recensement->setAdresse($data['adresse']);
         $recensement->setGenre($data['genre']);
-
+        $recensement->setDateDeNaissance($data['dateNaissance']);
+      
         // Ajoutez un message flash à la session
        // $flashBag->add('success', 'Habitant added successfully');
 

@@ -31,6 +31,9 @@ class Recensement
     #[ORM\Column(length: 10, nullable: true)]
     private ?string $genre = null;
 
+    #[ORM\Column(length: 10, nullable: true)] // Modification ici
+    private ?string $dateDeNaissance = null; // Modification ici
+
     public function getId(): ?int
     {
         return $this->id;
@@ -104,6 +107,18 @@ class Recensement
     public function setGenre(?string $genre): static
     {
         $this->genre = $genre;
+
+        return $this;
+    }
+
+    public function getDateDeNaissance(): ?string
+    {
+        return $this->dateDeNaissance;
+    }
+
+    public function setDateDeNaissance(?string $dateDeNaissance): static
+    {
+        $this->dateDeNaissance = $dateDeNaissance;
 
         return $this;
     }

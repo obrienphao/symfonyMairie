@@ -5,6 +5,15 @@ controllers:
     type: attribute
 
 
+accueil_redirection:
+    path: /redirection
+    controller: App\Controller\RedirectionController::redirection
+
+authentification:
+    path: /authentification
+    methods: [POST]
+    controller: App\Controller\AuthentificationController::authentification
+
 add_habitant:
     path: /add/habitant
     methods: [POST]
