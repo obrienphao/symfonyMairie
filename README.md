@@ -1,4 +1,6 @@
 # symfonyMairie
+
+#Pour le cours d'admin web - projet pour julien voir la branche `adminWeb`
 recensement Mairie 
 
 Nous avons créé une base de données `Habitant` que nous avions configuré dans notre fichier `env` ce qui ressemble à :
