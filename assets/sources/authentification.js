@@ -78,7 +78,7 @@ const Authentification = () => {
           <br />
           <label>
             Mot de passe :
-            <input type="text" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </label>
           <br />
           <br />

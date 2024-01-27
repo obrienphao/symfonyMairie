@@ -5,12 +5,12 @@ import '../bootstrap.js';
 import '../styles/app.css';
 
 const ShowHabitant = () => {
- const [habitants, setHabitants] = useState([]);
- const [habitant, setHabitant] = useState({});
- const [showEdit, setShowEdit] = useState(false);
- const [habitantToEdit, setHabitantToEdit] = useState(null);
- const [search, setSearch] = useState('');
- const [habitantInput, setHabitantInput] = useState({
+  const [habitants, setHabitants] = useState([]);
+  const [habitant, setHabitant] = useState({});
+  const [showEdit, setShowEdit] = useState(false);
+  const [habitantToEdit, setHabitantToEdit] = useState(null);
+  const [search, setSearch] = useState('');
+  const [habitantInput, setHabitantInput] = useState({
     id: '',
     nom: '',
     prenom: '',
@@ -18,13 +18,14 @@ const ShowHabitant = () => {
     email: '',
     telephone: '',
     genre: '',
- });
+    dateNaissance: '', // Ajout de cette ligne
+  });
 
- const handleInputChange = (e) => {
+  const handleInputChange = (e) => {
     setHabitantInput({ ...habitantInput, [e.target.name]: e.target.value });
- };
+  };
 
- const saveHabitant = async (id) => {
+  const saveHabitant = async (id) => {
     try {
       const response = await axios.put(`/update/habitant/${id}`, {
         id: habitantInput.id,
@@ -34,6 +35,7 @@ const ShowHabitant = () => {
         email: habitantInput.email,
         telephone: habitantInput.telephone,
         genre: habitantInput.genre,
+        dateNaissance: habitantInput.dateNaissance, // Ajout de cette ligne
       });
 
       if (response.data) {
@@ -44,9 +46,9 @@ const ShowHabitant = () => {
     } catch (error) {
       console.error('Error:', error);
     }
- };
+  };
 
- const deleteHabitant = async (id) => {
+  const deleteHabitant = async (id) => {
     try {
       const response = await fetch(`/delete/habitant/${id}`, {
         method: 'DELETE',
@@ -59,15 +61,15 @@ const ShowHabitant = () => {
     } catch (error) {
       console.error('Error:', error);
     }
- };
+  };
 
- useEffect(() => {
+  useEffect(() => {
     if (habitantToEdit) {
       setHabitantInput(habitantToEdit);
     }
- }, [habitantToEdit]);
+  }, [habitantToEdit]);
 
- const editHabitant = async (id) => {
+  const editHabitant = async (id) => {
     try {
       const response = await axios.get(`/get/habitant/${id}`);
 
@@ -80,6 +82,7 @@ const ShowHabitant = () => {
           email: response.data.email,
           telephone: response.data.telephone,
           genre: response.data.genre,
+          dateNaissance: response.data.dateNaissance, // Ajout de cette ligne
         });
         setHabitantInput(response.data);
         setShowEdit(true);
@@ -88,24 +91,24 @@ const ShowHabitant = () => {
     } catch (error) {
       console.error('Error:', error);
     }
- };
+  };
 
- useEffect(() => {
+  useEffect(() => {
     fetch('/show/habitant')
       .then((response) => response.json())
       .then((data) => setHabitants(data));
- }, []);
+  }, []);
 
- const handleSearchChange = (e) => {
+  const handleSearchChange = (e) => {
     setSearch(e.target.value);
- };
+  };
 
- const filteredHabitants = habitants.filter((habitant) =>
+  const filteredHabitants = habitants.filter((habitant) =>
     habitant.nom.toLowerCase().includes(search.toLowerCase()) ||
     habitant.prenom.toLowerCase().includes(search.toLowerCase())
- );
+  );
 
- return (
+  return (
     <div className="table-container" >
       <h2>Liste des habitants</h2>
       <input type="text" placeholder="Rechercher" value={search} onChange={handleSearchChange} />
@@ -120,6 +123,7 @@ const ShowHabitant = () => {
             <th>Téléphone</th>
             <th>Email</th>
             <th>Genre</th>
+            <th>Date de naissance</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -133,6 +137,7 @@ const ShowHabitant = () => {
               <td>{habitant.telephone}</td>
               <td>{habitant.email}</td>
               <td>{habitant.genre}</td>
+              <td>{habitant.dateNaissance}</td>
               <td>
                 <button onClick={() => deleteHabitant(habitant.id)}>Supprimer</button>
                 <button onClick={() => editHabitant(habitant.id)}>Modifier</button>
@@ -141,52 +146,84 @@ const ShowHabitant = () => {
           ))}
           {showEdit && (
             <tr>
-              <td colSpan="2">
+              <td>
+                <label htmlFor="id">ID:</label>
                 <input
-                 type="text"
-                 name="nom"
-                 value={habitantInput.nom}
-                 onChange={handleInputChange}
+                  type="text"
+                  name="id"
+                  id="id"
+                  value={habitantInput.id}
+                  onChange={handleInputChange}
                 />
               </td>
-              <td colSpan="2">
+              <td>
+                <label htmlFor="nom">Nom:</label>
                 <input
-                 type="text"
-                 name="prenom"
-                 value={habitantInput.prenom}
-                 onChange={handleInputChange}
+                  type="text"
+                  name="nom"
+                  id="nom"
+                  value={habitantInput.nom}
+                  onChange={handleInputChange}
                 />
               </td>
-              <td colSpan="2">
+              <td>
+                <label htmlFor="prenom">Prénom:</label>
                 <input
-                 type="text"
-                 name="email"
-                 value={habitantInput.email}
-                 onChange={handleInputChange}
+                  type="text"
+                  name="prenom"
+                  id="prenom"
+                  value={habitantInput.prenom}
+                  onChange={handleInputChange}
                 />
               </td>
-              <td colSpan="2">
+              <td>
+                <label htmlFor="adresse">Adresse:</label>
                 <input
-                 type="text"
-                 name="telephone"
-                 value={habitantInput.telephone}
-                 onChange={handleInputChange}
+                  type="text"
+                  name="adresse"
+                  id="adresse"
+                  value={habitantInput.adresse}
+                  onChange={handleInputChange}
                 />
               </td>
-              <td colSpan="2">
+              <td>
+                <label htmlFor="telephone">Téléphone:</label>
                 <input
-                 type="text"
-                 name="adresse"
-                 value={habitantInput.adresse}
-                 onChange={handleInputChange}
+                  type="text"
+                  name="telephone"
+                  id="telephone"
+                  value={habitantInput.telephone}
+                  onChange={handleInputChange}
                 />
               </td>
-              <td colSpan="2">
+              <td>
+                <label htmlFor="email">Email:</label>
                 <input
-                 type="text"
-                 name="genre"
-                 value={habitantInput.genre}
-                 onChange={handleInputChange}
+                  type="text"
+                  name="email"
+                  id="email"
+                  value={habitantInput.email}
+                  onChange={handleInputChange}
+                />
+              </td>
+              <td>
+                <label htmlFor="genre">Genre:</label>
+                <input
+                  type="text"
+                  name="genre"
+                  id="genre"
+                  value={habitantInput.genre}
+                  onChange={handleInputChange}
+                />
+              </td>
+              <td>
+                <label htmlFor="dateNaissance">Date de naissance:</label>
+                <input
+                  type="date"
+                  name="dateNaissance"
+                  id="dateNaissance"
+                  value={habitantInput.dateNaissance}
+                  onChange={handleInputChange}
                 />
               </td>
               <td>
@@ -198,7 +235,7 @@ const ShowHabitant = () => {
         </tbody>
       </table>
     </div>
- );
+  );
 };
 
 export default ShowHabitant;
