@@ -27,3 +27,6 @@ Donc pour un bon fonctionnement:
     2. `export PATH="./node_modules/.bin:$PATH"`
     3. `npm install --save-dev @symfony/webpack-encore`
 
+# Partie 2  test et integration gitlab:
+disponible dans la branche `main` ou `final`
+Nb: la branche final comporte unique le projet final mais pas les resources disponible sur gitlab
