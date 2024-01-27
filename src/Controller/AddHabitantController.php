@@ -47,6 +47,7 @@ class AddHabitantController extends AbstractController
 
         if (!$data['adresse']) {
             return  new JsonResponse([
+                
                 'status' => 'error',
                 'message' => 'L\'adresse est obligatoire ',
             ]);
