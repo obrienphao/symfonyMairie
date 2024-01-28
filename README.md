@@ -58,8 +58,8 @@ Après nous pouvons un formulaire pour ajouter les personées habilités
 
 Au niveau de notre formulaire de connexion le buton connexion appelle le contrôleur `Authentification`
 Nb : si votre chaine de connexion est bien configurée vous aurez :
-	Une base `Habitant` avec tableau recensement avec colonne (prénom, nom, email, date_de_naisance, telephone, genre)
-	Une table `login` qui a deux colonnes (identifiant, mot_de_passe)
+-->	Une base `Habitant` avec tableau recensement avec colonne (prénom, nom, email, date_de_naisance, telephone, genre)
+-->	Une table `login` qui a deux colonnes (identifiant, mot_de_passe)
 
 2.	Contrôleur Authentification :
 Ce contrôleur Authentification à pour but de faire une requête au niveau de la base de données login pour vérifier que la personne qui tente de se connecter existe bien dans la base sinon on retourne une exception erreur de l’envoi de notre formulaire.
