@@ -31,12 +31,13 @@ Donc pour un bon fonctionnement:
 disponible dans la branche `main` ou `final`
 Nb: la branche final comporte unique le projet final mais pas les resources disponible sur gitlab
 Pour ce projet nous avons  7 contrôleurs React : 
-•	AccueilController
-•	addHabitantController
-•	AuthentificationController
-•	DeleteHabitant
-•	ShoHabitantController
-•	UpdateHabitantController
+
+-•	AccueilController
+-•	addHabitantController
+-•	AuthentificationController
+-•	DeleteHabitant
+-•	ShoHabitantController
+-•	UpdateHabitantController
 
 1.	Au niveau du contrôleur Accueil :
 
