@@ -51,7 +51,7 @@ Ce contrôleur donne fenêtre de connexion  qui prend deux champs
 Pour les personnes habilitées nous trouvons les identifiants et mot de passe  dans la table `login`. Il faut savoir nous n’avons pas créer un espace dans l’application pour ajouter les personnes habilitées dans la base nous avons pris le cas l’admin soit habilité pour ajouter les personées habilités dans la base depuis une requête SQL  du genre 
 
 `INSERT INTO login(identifiant, mot_de_passe) values(‘phao’,’phaonouveau0’)`
-Après nous pouvons un formulaire pour ajouter les personées habilités 
+Après on pouvait aussi créer un formulaire pour ajouter les personées habilités mais ce n'était pas nôtre première approche.
 
 •	Donc il faut noter que sans la migration de la base `login`  vous ne pouvez pas vous connecter pour test l’app donc rassurer vous que pour la migration que la chaine de connexion depuis `.env`  soit configurer selon  base MySQL c’est-à-dire nom de la base et mot de passe commande pour la migration de notre base de donnée :
 1.	` php bin/console make:migration `
