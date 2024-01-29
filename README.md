@@ -20,7 +20,7 @@ Donc pour un bon fonctionnement:
   - Un bouton pour supprimer un habitant
   - Un bouton pour modifié les information de l'habitant
 
-#Erreur :
+# Erreur :
 - si vous rencontrez une erreur pendant l'exécution de la commande `npm run dev` qui dit `sh: 1: encore: not found` veuillez suivre cette demarche :
 - Dans la racine du projet vous faîtes
     1.  `composer require symfony/webpack-encore-bundle`
@@ -35,12 +35,12 @@ disponible dans la branche `main` ou `final`
 Nb: la branche final comporte unique le projet final mais pas les resources disponible sur gitlab
 Pour ce projet nous avons  7 contrôleurs React : 
 
--•	AccueilController
--•	addHabitantController
--•	AuthentificationController
--•	DeleteHabitant
--•	ShoHabitantController
--•	UpdateHabitantController
+-	AccueilController
+-	addHabitantController
+-	AuthentificationController
+-  	DeleteHabitant
+-   hoHabitantController
+- 	UpdateHabitantController
 
 1.	Au niveau du contrôleur Accueil :
 
