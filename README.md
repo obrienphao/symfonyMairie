@@ -27,7 +27,7 @@ Donc pour un bon fonctionnement:
     2. `export PATH="./node_modules/.bin:$PATH"`
     3. `npm install --save-dev @symfony/webpack-encore`
  
-- NB: pournettoyer le projet en supprimant le cache :
+- NB: pour nettoyer le projet en supprimant le cache :
 - `npm run build` à faire toujours dans le courant de votre projet
 
 # Partie 2  test et integration gitlab et selenium:
