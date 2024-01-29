@@ -71,6 +71,7 @@ const Authentification = () => {
     <div className="App">
       {status !== 'ok' && (
         <form onSubmit={handleSubmit}>
+        <h3>Connexion</h3>
           <label>
             Nom:
             <input type="text" name="nom" value={nom} onChange={(e) => setNom(e.target.value)} />

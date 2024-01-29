@@ -60,7 +60,7 @@ class AddHabitantController extends AbstractController
         if (!preg_match('/^[a-zA-ZÀ-ÿ0-9\s]+$/', $data['prenom'])) {
             return  new JsonResponse([
                 'status' => 'error',
-                'message' => 'Le prénom ne doit contenir que des lettres, des chiffres et des espaces',
+                'message' => 'Le prénom ne doit pas contenir de caractères spéciaux ($,#,£,€,*,µ...)',
             ]);
         }
 
@@ -70,7 +70,7 @@ class AddHabitantController extends AbstractController
         if (!preg_match('/^[a-zA-ZÀ-ÿ0-9\s]+$/', $data['nom'])) {
             return  new JsonResponse([
                 'status' => 'error',
-                'message' => 'Le prénom ne doit contenir que des lettres, des chiffres et des espaces',
+                'message' => 'Le nom ne doit pas contenir de caractères spéciaux ($,#,£,€,*,µ...)',
             ]);
         }
 
@@ -96,7 +96,7 @@ class AddHabitantController extends AbstractController
         if (!preg_match('/^[a-zA-ZÀ-ÿ0-9\s]+$/', $data['adresse'])) {
             return  new JsonResponse([
                 'status' => 'error',
-                'message' => 'Le prénom ne doit contenir que des lettres, des chiffres et des espaces',
+                'message' => 'L\'adresse ne doit pas contenir de caractères spéciaux ($,#,£,€,*,µ...)',
             ]);
         }
 
