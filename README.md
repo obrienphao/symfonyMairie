@@ -32,7 +32,7 @@ Donc pour un bon fonctionnement:
 
 # Partie 2  test et integration gitlab et selenium:
 disponible dans la branche `main` ou `final`
-Nb: la branche final comporte unique le projet final mais pas les resources disponible sur gitlab
+
 Pour ce projet nous avons  7 contrôleurs React : 
 
 -	AccueilController
