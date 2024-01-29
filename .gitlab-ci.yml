@@ -1,11 +1,16 @@
-image: node:latest
-
 stages:
   - test
 
-cypress_test:
+test:
+  image: cypress/browsers:node-20.9.0-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1
   stage: test
   script:
-    - npm install
-    - npm run cypress
+    # install dependencies
+    - npm ci
+    #installation de cypress 
+    - npm install cypress@latest --save-dev
 
+    # start the server in the background
+    - npm start &
+    # run Cypress tests
+    - npx cypress run --browser firefox

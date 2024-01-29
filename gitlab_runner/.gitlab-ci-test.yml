@@ -1,0 +1,11 @@
+stages:
+  - test
+
+test_job:
+  
+  stage: test
+  script:
+    - echo "Ceci est un test d'impression."
+    - echo "Vous pouvez ajouter autant de commandes echo que vous le souhaitez."
+
+
