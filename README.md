@@ -54,6 +54,8 @@ Pour les personnes habilitées nous trouvons les identifiants et mot de passe  d
 Après on pouvait aussi créer un formulaire pour ajouter les personées habilités mais ce n'était pas nôtre première approche.
 
 •	Donc il faut noter que sans la migration de la base `login`  vous ne pouvez pas vous connecter pour test l’app donc rassurer vous que pour la migration que la chaine de connexion depuis `.env`  soit configurer selon  base MySQL c’est-à-dire nom de la base et mot de passe commande pour la migration de notre base de donnée :
+De préférence faites directement la deuxième commande. car le prémère regenère ue nouvelle congif datée qui fera objet d'un conflit avec un fichier déjà existant mais pas avec la même date.
+vous devrez donc supprimer l'ancien `entity` voilà pourquoi c'est préférable d'executer directement la commande 2 
 1.	` php bin/console make:migration `
 2.	` php bin/console doctrine:migrations:migrate`
 3.	Accepter les conditions de migration [yes]
